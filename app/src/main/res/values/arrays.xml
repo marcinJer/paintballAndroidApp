@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<array name="games">
+		<item>@string/twoTeams</item>
+		<item>@string/capture_flag</item>
+		<item>@string/theWest</item>
+		<item>@string/twoFlags</item>
+		<item>@string/vip</item>
+	</array>
+	<array name="weapons">
+		<item>@string/pump</item>
+		<item>@string/pneumatic</item>
+		<item>@string/electro_pneumatic</item>
+		<item>@string/electronic</item>
+	</array>
+	<array name="participants">
+		<item>@string/pump</item>
+		<item>@string/pneumatic</item>
+		<item>@string/electro_pneumatic</item>
+		<item>@string/electronic</item>
+	</array>
+
+	<array name="menu">
+		<item>@string/ordering</item>
+		<item>@string/editioning</item>
+		<item>@string/deleting</item>
+	</array>
+</resources>
