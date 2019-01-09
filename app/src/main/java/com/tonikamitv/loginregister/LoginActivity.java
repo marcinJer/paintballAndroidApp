@@ -2,6 +2,7 @@ package com.tonikamitv.loginregister;
 
 import android.app.AlertDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -17,6 +18,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class LoginActivity extends AppCompatActivity {
+    public static String SHARED_PREFS = "sharedPrefs";
+    public static String USER_ID = "sharedPrefs";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,11 +55,13 @@ public class LoginActivity extends AppCompatActivity {
                             if (success) {
                                 String name = jsonResponse.getString("name");
                                 String surname = jsonResponse.getString("surname");
-
+                                String userId = jsonResponse.getString("id");
+                                saveData(userId);
                                 Intent intent = new Intent(LoginActivity.this, UserAreaActivity.class);
                                 intent.putExtra("name", name);
                                 intent.putExtra("surname", surname);
                                 intent.putExtra("username", username);
+                                intent.putExtra("id", userId.toString());
                                 LoginActivity.this.startActivity(intent);
                             } else {
                                 AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
@@ -77,5 +82,11 @@ public class LoginActivity extends AppCompatActivity {
                 queue.add(loginRequest);
             }
         });
+    }
+    public void saveData(String user_id){
+        SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, MODE_WORLD_READABLE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+
+        editor.putString(USER_ID, user_id);
     }
 }

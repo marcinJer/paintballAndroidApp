@@ -1,21 +1,30 @@
 package com.tonikamitv.loginregister;
 
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
-import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
+
+import java.util.HashMap;
 
 public class UserAreaActivity extends AppCompatActivity {
 
     TextView tvWelcomeMsg;
     Button addOrderBtn;
+    ProgressDialog progressDialog;
+    HashMap<String, String> hashMap = new HashMap<>();
+    String finalResult;
+    HttpParse httpParse = new HttpParse();
+    String HttpURL = "https://jeremy-paintball.000webhostapp.com/AddOrder.php";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,55 +41,53 @@ public class UserAreaActivity extends AppCompatActivity {
 
         addOrderBtn = (Button) findViewById(R.id.addOrderBtn);
 
+        final String userId = intent.getStringExtra("id");
+
         addOrderBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                openHowToDialog();
+                openHowToDialog(userId);
             }
         });
     }
 
-    private void openHowToDialog() {
+    private void openHowToDialog(final String userId) {
         new AlertDialog.Builder(this).setTitle("Jak zarezerwować").setMessage("Po tej wiadomości otrzymasz listę wyborów twojej rezerwacji:" +
                 " mapę, rodzaj broni, liczbę uczestników oraz datę.").setCancelable(false)
                 .setNeutralButton("OK", new DialogInterface.OnClickListener() {
 
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        openGameSelectionDialog();
+                        openGameSelectionDialog(userId);
                     }
                 }).show();
     }
 
-    private void openGameSelectionDialog() {
+    private void openGameSelectionDialog(final String userId) {
         new AlertDialog.Builder(this).setTitle("Wybierz grę").setItems(R.array.games, new DialogInterface.OnClickListener() {
 
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 String gameType;
-                if (which == 0){
+                if (which == 0) {
                     gameType = "Dwa zespoły";
-                }
-                else if (which == 1){
+                } else if (which == 1) {
                     gameType = "Zdobądź flagę";
-                }
-                else if (which == 2){
+                } else if (which == 2) {
                     gameType = "Pojedynek rewolwerowców";
-                }
-                else if (which == 3) {
+                } else if (which == 3) {
                     gameType = "Dwie flagi";
-                }
-                else
+                } else
                     gameType = "Utrzymaj VIPa przy życiu";
 
-                openPlayerSelectionDialog(gameType);
+                openPlayerSelectionDialog(userId, gameType);
             }
         }).show();
     }
 
     final CharSequence[] numberOFParticipantsArray = {"2", "3", "4", "5", "6", "7", "8", "9", "10"};
 
-    private void openPlayerSelectionDialog(final String gameType) {
+    private void openPlayerSelectionDialog(final String userId, final String gameType) {
         new AlertDialog.Builder(this).setTitle("Wybierz liczbę uczestników").setItems(numberOFParticipantsArray, new DialogInterface.OnClickListener() {
 
             @Override
@@ -104,13 +111,13 @@ public class UserAreaActivity extends AppCompatActivity {
                     number = "9";
                 else
                     number = "10";
-                openWeaponsSelectionDialog(gameType, number);
+                openWeaponsSelectionDialog(userId, gameType, number);
             }
         }).show();
 
     }
 
-    protected void openWeaponsSelectionDialog(final String gameType, final String number) {
+    protected void openWeaponsSelectionDialog(final String userId, final String gameType, final String number) {
         new AlertDialog.Builder(this).setTitle("Wybierz broń dla zawodników").setItems(R.array.weapons, new DialogInterface.OnClickListener() {
 
             @Override
@@ -124,12 +131,12 @@ public class UserAreaActivity extends AppCompatActivity {
                     weaponType = "Elektro-pneumatyczna";
                 else
                     weaponType = "Elektroniczna";
-                openDatePickerSelectionDialog(gameType, number, weaponType);
+                openDatePickerSelectionDialog(userId, gameType, number, weaponType);
             }
         }).show();
     }
 
-    private void openDatePickerSelectionDialog(final String gameType, final String number, final String weaponType) {
+    private void openDatePickerSelectionDialog(final String userId, final String gameType, final String number, final String weaponType) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         final DatePicker picker = new DatePicker(this);
         picker.setCalendarViewShown(false);
@@ -143,13 +150,13 @@ public class UserAreaActivity extends AppCompatActivity {
 
                 int month = picker.getMonth() + 1;
                 String currentDateString = String.valueOf(picker.getDayOfMonth() + "." + month + "." + picker.getYear());
-                openTimePickerPickerSelectionDialog(gameType, number, weaponType, currentDateString);
+                openTimePickerSelectionDialog(userId, gameType, number, weaponType, currentDateString);
             }
         });
         builder.show();
     }
 
-    private void openTimePickerPickerSelectionDialog(final String gameType, final String number, final String weaponType, final String currentDateString) {
+    private void openTimePickerSelectionDialog(final String userId, final String gameType, final String number, final String weaponType, final String currentDateString) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         final TimePicker picker = new TimePicker(this);
 
@@ -161,6 +168,7 @@ public class UserAreaActivity extends AppCompatActivity {
             public void onClick(DialogInterface dialog, int which) {
 
                 String date = currentDateString + " " + picker.getCurrentHour() + ":" + picker.getCurrentMinute();
+                addOrder(userId, "200", gameType, weaponType, date, number);
                 //addEvent(200, gameType, weaponType, number, date);
             }
         });
@@ -173,19 +181,15 @@ public class UserAreaActivity extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 String gameType;
-                if (which == 0){
+                if (which == 0) {
                     gameType = "Dwa zespoły";
-                }
-                else if (which == 1){
+                } else if (which == 1) {
                     gameType = "Zdobądź flagę";
-                }
-                else if (which == 2){
+                } else if (which == 2) {
                     gameType = "Pojedynek rewolwerowców";
-                }
-                else if (which == 3) {
+                } else if (which == 3) {
                     gameType = "Dwie flagi";
-                }
-                else
+                } else
                     gameType = "Utrzymaj VIPa przy życiu";
 
                 openEditPlayerSelectionDialog(gameType);
@@ -282,7 +286,54 @@ public class UserAreaActivity extends AppCompatActivity {
         builder.show();
     }
 
-    /*private void addEvent(int i, String gameType, String weaponType, String number, String date) {
 
-    }*/
+
+    public void addOrder(final String userId, final String price, final String game, final String weapon, final String date, final String numberOfParticipants) {
+
+        class OrderRegistrationClass extends AsyncTask<String, Void, String> {
+
+            @Override
+            protected void onPreExecute() {
+                super.onPreExecute();
+
+                progressDialog = ProgressDialog.show(UserAreaActivity.this, "Loading Data", null, true, true);
+            }
+
+            @Override
+            protected void onPostExecute(String httpResponseMsg) {
+
+                super.onPostExecute(httpResponseMsg);
+
+                progressDialog.dismiss();
+
+                Toast.makeText(UserAreaActivity.this, httpResponseMsg.toString(), Toast.LENGTH_LONG).show();
+
+            }
+
+            @Override
+            protected String doInBackground(String... params) {
+
+                hashMap.put("id", params[0]);
+
+                hashMap.put("price", params[1]);
+
+                hashMap.put("game", params[2]);
+
+                hashMap.put("weapon", params[3]);
+
+                hashMap.put("date", params[4]);
+
+                hashMap.put("numberOfParticipants", params[5]);
+
+
+                finalResult = httpParse.postRequest(hashMap, HttpURL);
+
+                return finalResult;
+            }
+        }
+
+        OrderRegistrationClass OrderRegistrationClass = new OrderRegistrationClass();
+
+        OrderRegistrationClass.execute(userId, price, game, weapon, date, numberOfParticipants);
+    }
 }
