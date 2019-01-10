@@ -1,4 +1,4 @@
-package com.tonikamitv.loginregister;
+package com.jer.paintballApp;
 
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
@@ -19,7 +19,7 @@ import java.util.HashMap;
 public class UserAreaActivity extends AppCompatActivity {
 
     TextView tvWelcomeMsg;
-    Button addOrderBtn;
+    Button addOrderBtn, showOrders;
     ProgressDialog progressDialog;
     HashMap<String, String> hashMap = new HashMap<>();
     String finalResult;
@@ -40,6 +40,7 @@ public class UserAreaActivity extends AppCompatActivity {
         tvWelcomeMsg.setText(message);
 
         addOrderBtn = (Button) findViewById(R.id.addOrderBtn);
+        showOrders = (Button) findViewById(R.id.buttonShow);
 
         final String userId = intent.getStringExtra("id");
 
@@ -47,6 +48,18 @@ public class UserAreaActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 openHowToDialog(userId);
+            }
+        });
+
+        showOrders.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+
+                Intent intent = new Intent(UserAreaActivity.this, ShowAllOrdersActivity.class);
+                intent.putExtra("id", userId.toString());
+                UserAreaActivity.this.startActivity(intent);
+
             }
         });
     }
@@ -169,7 +182,7 @@ public class UserAreaActivity extends AppCompatActivity {
 
                 String date = currentDateString + " " + picker.getCurrentHour() + ":" + picker.getCurrentMinute();
                 addOrder(userId, "200", gameType, weaponType, date, number);
-                //addEvent(200, gameType, weaponType, number, date);
+                //addEvent(200, gameType, weaponType, number, data);
             }
         });
         builder.show();
@@ -279,7 +292,7 @@ public class UserAreaActivity extends AppCompatActivity {
 
                 String date = currentDateString + " " + picker.getCurrentHour() + ":" + picker.getCurrentMinute();
 
-                //editEvent(200, gameType, weaponType, number, date);
+                //editEvent(200, gameType, weaponType, number, data);
 
             }
         });

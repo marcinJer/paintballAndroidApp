@@ -1,4 +1,4 @@
-package com.tonikamitv.loginregister;
+package com.jer.paintballApp;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;

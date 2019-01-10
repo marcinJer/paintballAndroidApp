@@ -1,4 +1,4 @@
-package com.tonikamitv.loginregister;
+package com.jer.paintballApp;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
