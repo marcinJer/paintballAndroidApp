@@ -6,6 +6,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
@@ -41,7 +42,7 @@ public class ShowAllOrdersActivity extends AppCompatActivity {
 
         new GetHttpResponse(ShowAllOrdersActivity.this).execute();
 
-        /*listViewOrders.setOnItemClickListener(new AdapterView.OnItemClickListener()
+        listViewOrders.setOnItemClickListener(new AdapterView.OnItemClickListener()
         {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -55,7 +56,7 @@ public class ShowAllOrdersActivity extends AppCompatActivity {
                 finish();
 
             }
-        });*/
+        });
     }
 
     public void save_user_id(String id) {

@@ -1,4 +1,3 @@
-/*
 package com.jer.paintballApp;
 
 import android.app.ProgressDialog;
@@ -23,18 +22,16 @@ public class ShowSingleRecordActivity extends AppCompatActivity {
     HttpParse httpParse = new HttpParse();
     ProgressDialog pDialog;
 
-    String HttpURL = "http://unamusing-instrumen.000webhostapp.com/FilterNoteData.php";
-
-    String HttpUrlDeleteRecord = "http://unamusing-instrumen.000webhostapp.com/DeleteNote.php";
+    String HttpURL = "http://jeremy-paintball.000webhostapp.com/FilterOrderData.php";
 
     String finalResult ;
     HashMap<String,String> hashMap = new HashMap<>();
     String ParseResult ;
     HashMap<String,String> ResultHash = new HashMap<>();
     String FinalJSonObject ;
-    TextView NAME,CONTENT;
-    String NameHolder, ContentHolder;
+    TextView PRICE, GAME, WEAPON, DATE, NUMBEROFPARTICIPANTS;
     Button UpdateButton, DeleteButton;
+    String priceHolder, gameHolder, weaponHolder, dateHolder, playersHolder;
     String TempItem;
     ProgressDialog progressDialog2;
 
@@ -43,8 +40,11 @@ public class ShowSingleRecordActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_single_record);
 
-        NAME = (TextView)findViewById(R.id.textName);
-        CONTENT = (TextView)findViewById(R.id.textContent);
+        PRICE = (TextView)findViewById(R.id.tvPrice);
+        GAME = (TextView)findViewById(R.id.tvGame);
+        WEAPON = (TextView)findViewById(R.id.tvWeapon);
+        DATE = (TextView)findViewById(R.id.tvDate);
+        NUMBEROFPARTICIPANTS = (TextView)findViewById(R.id.tvParticipants);
 
         UpdateButton = (Button)findViewById(R.id.buttonUpdate);
         DeleteButton = (Button)findViewById(R.id.buttonDelete);
@@ -54,11 +54,11 @@ public class ShowSingleRecordActivity extends AppCompatActivity {
         HttpWebCall(TempItem);
 
 
-        UpdateButton.setOnClickListener(new View.OnClickListener() {
+        /*UpdateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                Intent intent = new Intent(ShowSingleRecordActivity.this,UpdateActivity.class);
+                Intent intent = new Intent(ShowSingleRecordActivity.this, UpdateActivity.class);
 
                 intent.putExtra("note_ID", TempItem);
                 intent.putExtra("note_name", NameHolder);
@@ -69,57 +69,9 @@ public class ShowSingleRecordActivity extends AppCompatActivity {
                 finish();
 
             }
-        });
+        });*/
 
-        DeleteButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
 
-                NoteDelete(TempItem);
-
-            }
-        });
-
-    }
-
-    public void NoteDelete(final String NoteID) {
-
-        class NoteDeleteClass extends AsyncTask<String, Void, String> {
-
-            @Override
-            protected void onPreExecute() {
-                super.onPreExecute();
-
-                progressDialog2 = ProgressDialog.show(ShowSingleRecordActivity.this, "Loading Data", null, true, true);
-            }
-
-            @Override
-            protected void onPostExecute(String httpResponseMsg) {
-
-                super.onPostExecute(httpResponseMsg);
-
-                progressDialog2.dismiss();
-
-                Toast.makeText(ShowSingleRecordActivity.this, httpResponseMsg.toString(), Toast.LENGTH_LONG).show();
-
-                finish();
-
-            }
-
-            @Override
-            protected String doInBackground(String... params) {
-
-                hashMap.put("note_ID", params[0]);
-
-                finalResult = httpParse.postRequest(hashMap, HttpUrlDeleteRecord);
-
-                return finalResult;
-            }
-        }
-
-        NoteDeleteClass NoteDeleteClass = new NoteDeleteClass();
-
-        NoteDeleteClass.execute(NoteID);
     }
 
 
@@ -150,7 +102,7 @@ public class ShowSingleRecordActivity extends AppCompatActivity {
             @Override
             protected String doInBackground(String... params) {
 
-                ResultHash.put("note_ID",params[0]);
+                ResultHash.put("id",params[0]);
 
                 ParseResult = httpParse.postRequest(ResultHash, HttpURL);
 
@@ -197,20 +149,21 @@ public class ShowSingleRecordActivity extends AppCompatActivity {
                         {
                             jsonObject = jsonArray.getJSONObject(i);
 
-                            NameHolder = jsonObject.getString("note_name") ;
-                            ContentHolder = jsonObject.getString("note_content") ;
+                            priceHolder = jsonObject.getString("price");
+                            gameHolder = jsonObject.getString("game");
+                            weaponHolder = jsonObject.getString("weapon");
+                            dateHolder = jsonObject.getString("date");
+                            playersHolder = jsonObject.getString("numberOfParticipants");
 
                         }
                     }
                     catch (JSONException e) {
-                        // TODO Auto-generated catch block
                         e.printStackTrace();
                     }
                 }
             }
             catch (Exception e)
             {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
             }
             return null;
@@ -220,10 +173,13 @@ public class ShowSingleRecordActivity extends AppCompatActivity {
         protected void onPostExecute(Void result)
         {
 
-            NAME.setText(NameHolder);
-            CONTENT.setText(ContentHolder);
+            PRICE.setText(priceHolder);
+            GAME.setText(gameHolder);
+            WEAPON.setText(weaponHolder);
+            DATE.setText(dateHolder);
+            NUMBEROFPARTICIPANTS.setText(playersHolder);
 
         }
     }
 
-}*/
+}

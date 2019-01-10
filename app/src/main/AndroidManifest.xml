@@ -20,6 +20,7 @@
         <activity android:name="com.jer.paintballApp.RegisterActivity" />
         <activity android:name="com.jer.paintballApp.UserAreaActivity"></activity>
         <activity android:name="com.jer.paintballApp.ShowAllOrdersActivity"></activity>
+        <activity android:name="com.jer.paintballApp.ShowSingleRecordActivity"></activity>
     </application>
 
 </manifest>
