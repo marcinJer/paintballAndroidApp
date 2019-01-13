@@ -27,6 +27,7 @@ public class ShowSingleRecordActivity extends AppCompatActivity {
 
     String HttpURL = "http://jeremy-paintball.000webhostapp.com/FilterOrderData.php";
     String HttpURLUpdate = "http://jeremy-paintball.000webhostapp.com/UpdateOrder.php";
+    String HttpURLDelete = "http://jeremy-paintball.000webhostapp.com/DeleteOrder.php";
 
     String finalResult;
     ProgressDialog progressDialog;
@@ -39,6 +40,7 @@ public class ShowSingleRecordActivity extends AppCompatActivity {
     String priceHolder, gameHolder, weaponHolder, dateHolder, playersHolder;
     String TempItem;
     String idHolder;
+    ProgressDialog progressDialog2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,9 +71,56 @@ public class ShowSingleRecordActivity extends AppCompatActivity {
             }
         });
 
+        DeleteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                orderDelete(TempItem);
+
+            }
+        });
 
     }
 
+    public void orderDelete(final String orderId) {
+
+        class OrderDeleteClass extends AsyncTask<String, Void, String> {
+
+            @Override
+            protected void onPreExecute() {
+                super.onPreExecute();
+
+                progressDialog2 = ProgressDialog.show(ShowSingleRecordActivity.this, "Loading Data", null, true, true);
+            }
+
+            @Override
+            protected void onPostExecute(String httpResponseMsg) {
+
+                super.onPostExecute(httpResponseMsg);
+
+                progressDialog2.dismiss();
+
+                Toast.makeText(ShowSingleRecordActivity.this, httpResponseMsg.toString(), Toast.LENGTH_LONG).show();
+
+                finish();
+
+            }
+
+            @Override
+            protected String doInBackground(String... params) {
+
+                hashMap.put("id", params[0]);
+
+                finalResult = httpParse.postRequest(hashMap, HttpURLDelete);
+
+                return finalResult;
+            }
+        }
+
+        OrderDeleteClass OrderDeleteClass = new OrderDeleteClass();
+
+        OrderDeleteClass.execute(orderId);
+    }
 
     public void HttpWebCall(final String PreviousListViewClickedItem) {
 

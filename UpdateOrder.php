@@ -10,11 +10,11 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
     $date = $_POST['date'];
 	$numberOfParticipants = $_POST['numberOfParticipants'];
 
-    $Sql_Query = "UPDATE orders SET game= '$game', weapon = '$weapon', date = '$date', weapon = '$weapon', numberOfParticipants = '$numberOfParticipants' WHERE id = $orderId";
+    $Sql_Query = "UPDATE orders SET game = '$game', weapon = '$weapon', date = '$date', numberOfParticipants = '$numberOfParticipants' WHERE id = $orderId";
 
     if(mysqli_query($con,$Sql_Query))
     {
-        echo 'Note Updated Successfully';
+        echo 'Order updated successfully!';
     }
     else
     {
@@ -22,3 +22,4 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
     }
 }
 mysqli_close($con);
+?>
