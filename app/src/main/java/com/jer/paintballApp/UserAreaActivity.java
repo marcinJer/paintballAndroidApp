@@ -24,7 +24,7 @@ public class UserAreaActivity extends AppCompatActivity {
     HashMap<String, String> hashMap = new HashMap<>();
     String finalResult;
     HttpParse httpParse = new HttpParse();
-    String HttpURL = "https://jeremy-paintball.000webhostapp.com/AddOrder.php";
+    String HttpURL = "http://jeremy-paintball.000webhostapp.com/AddOrder.php";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
