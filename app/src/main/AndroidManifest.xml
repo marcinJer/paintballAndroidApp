@@ -21,6 +21,7 @@
         <activity android:name="com.jer.paintballApp.UserAreaActivity"></activity>
         <activity android:name="com.jer.paintballApp.ShowAllOrdersActivity"></activity>
         <activity android:name="com.jer.paintballApp.ShowSingleRecordActivity"></activity>
+        <activity android:name="com.jer.paintballApp.Pop" android:theme="@style/AppTheme.PopTheme"></activity>
     </application>
 
 </manifest>

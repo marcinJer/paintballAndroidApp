@@ -4,7 +4,7 @@
     android:id="@+id/activity_show_single_record"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimary"
+    android:background="@drawable/main1"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
@@ -17,8 +17,11 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="96dp"
-        android:text="Edit This Record" />
+        android:layout_marginBottom="115dp"
+        android:background="@color/indigo"
+        android:text="Edytuj ten rekord"
+        android:textColor="@android:color/background_light"
+        android:textSize="18sp" />
 
     <Button
         android:id="@+id/buttonDelete"
@@ -26,15 +29,21 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="50dp"
-        android:text="Delete This Record" />
+        android:layout_marginBottom="53dp"
+        android:background="@color/indigo"
+        android:text="Usuń ten rekord"
+        android:textColor="@android:color/background_light"
+        android:textSize="18sp" />
 
     <TextView
         android:id="@+id/tvPrice"
         android:layout_width="fill_parent"
         android:layout_height="30dp"
         android:layout_alignParentTop="true"
-        android:text="Cena" />
+        android:text="Cena"
+        android:textColor="@color/red"
+        android:textSize="18sp"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/tvGame"
@@ -43,7 +52,10 @@
         android:layout_alignEnd="@+id/tvPrice"
         android:layout_alignParentTop="true"
         android:layout_marginTop="50dp"
-        android:text="Rodzaj gry" />
+        android:text="Rodzaj gry"
+        android:textColor="@color/red"
+        android:textSize="18sp"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/tvWeapon"
@@ -52,7 +64,10 @@
         android:layout_alignEnd="@+id/tvGame"
         android:layout_alignParentTop="true"
         android:layout_marginTop="100dp"
-        android:text="Rodzaj broni" />
+        android:text="Rodzaj broni"
+        android:textColor="@color/red"
+        android:textSize="18sp"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/tvDate"
@@ -61,7 +76,10 @@
         android:layout_alignEnd="@+id/tvWeapon"
         android:layout_alignParentTop="true"
         android:layout_marginTop="150dp"
-        android:text="Data" />
+        android:text="Data"
+        android:textColor="@color/red"
+        android:textSize="18sp"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/tvParticipants"
@@ -70,6 +88,9 @@
         android:layout_alignEnd="@+id/tvDate"
         android:layout_alignParentTop="true"
         android:layout_marginTop="200dp"
-        android:text="Ilość graczy" />
+        android:text="Ilość graczy"
+        android:textColor="@color/red"
+        android:textSize="18sp"
+        android:textStyle="bold" />
 
 </RelativeLayout>

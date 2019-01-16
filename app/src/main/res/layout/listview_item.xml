@@ -2,7 +2,6 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimary"
     android:padding="15dp">
 
     <TextView
@@ -11,8 +10,8 @@
         android:layout_height="wrap_content"
         android:padding="10dp"
         android:text="Items"
-        android:textColor="#fff"
-        android:textSize="15sp"
-        />
+        android:textColor="@color/red"
+        android:textSize="18sp"
+        android:textStyle="bold" />
 
 </LinearLayout>

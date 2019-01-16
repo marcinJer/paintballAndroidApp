@@ -5,14 +5,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.jer.paintballApp.ShowAllOrdersActivity"
+    android:background="@drawable/main1"
     >
 
     <ListView
+        android:id="@+id/lvOrders"
+        android:textColor="#ffffff"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignParentTop="true"
+        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:id="@+id/lvOrders"/>
+        android:layout_marginBottom="0dp" />
 
     <ProgressBar
         android:id="@+id/progressBar"

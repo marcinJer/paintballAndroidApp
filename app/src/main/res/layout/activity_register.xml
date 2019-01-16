@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/loginbcg"
     android:padding="@dimen/activity_horizontal_margin">
 
     <EditText
@@ -13,8 +15,13 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
+        android:layout_marginStart="50dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="46dp"
+        android:layout_marginRight="46dp"
         android:ems="10"
-        android:hint="Name"
+        android:hint="Imię"
         android:inputType="textPersonName" />
 
     <EditText
@@ -24,8 +31,11 @@
         android:layout_below="@+id/etSurname"
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="-1dp"
+        android:layout_marginRight="46dp"
         android:ems="10"
-        android:hint="Username"
+        android:hint="Nazwa użytkownika"
         android:inputType="textPersonName" />
 
     <EditText
@@ -37,8 +47,13 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
+        android:layout_marginStart="50dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="-1dp"
+        android:layout_marginEnd="46dp"
+        android:layout_marginRight="46dp"
         android:ems="10"
-        android:hint="Password"
+        android:hint="Hasło"
         android:inputType="textPassword" />
 
     <Button
@@ -50,7 +65,16 @@
         android:layout_alignRight="@+id/etSurname"
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
-        android:text="Register" />
+        android:layout_marginStart="76dp"
+        android:layout_marginLeft="76dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginEnd="38dp"
+        android:layout_marginRight="38dp"
+        android:background="@color/indigo"
+        android:text="Zarejestruj"
+        android:textAllCaps="true"
+        android:textColor="@android:color/background_light"
+        android:textSize="16sp" />
 
     <EditText
         android:id="@+id/etSurname"
@@ -61,7 +85,12 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
+        android:layout_marginStart="50dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="0dp"
+        android:layout_marginEnd="46dp"
+        android:layout_marginRight="46dp"
         android:ems="10"
-        android:hint="Surname"
+        android:hint="Nazwisko"
         android:inputType="textPersonName" />
 </RelativeLayout>
