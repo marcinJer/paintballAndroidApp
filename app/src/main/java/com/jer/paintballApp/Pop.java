@@ -18,7 +18,7 @@ public class Pop extends Activity {
         WindowManager.LayoutParams params = this.getWindow().getAttributes();
         params.y=320;
         params.alpha= 50;
-        
+
         int height = dm.heightPixels;
         int width = dm.widthPixels;
 
