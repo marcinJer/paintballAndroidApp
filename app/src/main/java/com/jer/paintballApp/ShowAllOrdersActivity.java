@@ -30,7 +30,7 @@ public class ShowAllOrdersActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_show_all_notes);
+        setContentView(R.layout.activity_show_all_orders);
 
         Intent intent = getIntent();
         String userId = intent.getStringExtra("id").toString();
