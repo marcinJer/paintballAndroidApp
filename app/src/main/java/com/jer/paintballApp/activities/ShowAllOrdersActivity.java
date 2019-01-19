@@ -1,4 +1,4 @@
-package com.jer.paintballApp;
+package com.jer.paintballApp.activities;
 
 import android.content.Context;
 import android.content.Intent;
@@ -10,6 +10,11 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
+
+import com.jer.paintballApp.ListAdapterClass;
+import com.jer.paintballApp.Order;
+import com.jer.paintballApp.R;
+import com.jer.paintballApp.httpClasses.HttpServicesClass;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -30,7 +35,7 @@ public class ShowAllOrdersActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_show_all_notes);
+        setContentView(R.layout.activity_show_all_orders);
 
         Intent intent = getIntent();
         String userId = intent.getStringExtra("id").toString();

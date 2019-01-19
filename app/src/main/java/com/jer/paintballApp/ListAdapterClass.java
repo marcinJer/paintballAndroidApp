@@ -63,6 +63,7 @@ public class ListAdapterClass extends BaseAdapter {
 
         viewItem.TextViewNoteName.setText(valueList.get(position).data);
 
+
         return convertView;
     }
 }
