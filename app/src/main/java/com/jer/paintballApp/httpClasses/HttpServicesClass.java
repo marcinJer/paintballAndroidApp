@@ -1,4 +1,4 @@
-package com.jer.paintballApp;
+package com.jer.paintballApp.httpClasses;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;

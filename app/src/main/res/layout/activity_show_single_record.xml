@@ -9,7 +9,7 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context="com.jer.paintballApp.ShowSingleRecordActivity">
+    tools:context="com.jer.paintballApp.activities.ShowSingleRecordActivity">
 
     <Button
         android:id="@+id/buttonUpdate"

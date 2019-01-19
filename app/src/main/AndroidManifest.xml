@@ -10,17 +10,17 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.jer.paintballApp.LoginActivity">
+        <activity android:name="com.jer.paintballApp.activities.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.jer.paintballApp.RegisterActivity" />
-        <activity android:name="com.jer.paintballApp.UserAreaActivity"></activity>
-        <activity android:name="com.jer.paintballApp.ShowAllOrdersActivity"></activity>
-        <activity android:name="com.jer.paintballApp.ShowSingleRecordActivity"></activity>
+        <activity android:name="com.jer.paintballApp.activities.RegisterActivity" />
+        <activity android:name="com.jer.paintballApp.activities.UserAreaActivity"></activity>
+        <activity android:name="com.jer.paintballApp.activities.ShowAllOrdersActivity"></activity>
+        <activity android:name="com.jer.paintballApp.activities.ShowSingleRecordActivity"></activity>
         <activity android:name="com.jer.paintballApp.Pop" android:theme="@style/AppTheme.PopTheme"></activity>
     </application>
 

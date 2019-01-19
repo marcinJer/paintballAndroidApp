@@ -4,7 +4,7 @@
     android:id="@+id/activity_show_all_notes"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.jer.paintballApp.ShowAllOrdersActivity"
+    tools:context="com.jer.paintballApp.activities.ShowAllOrdersActivity"
     android:background="@drawable/main1"
     >
 

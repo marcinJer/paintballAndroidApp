@@ -1,4 +1,4 @@
-package com.jer.paintballApp;
+package com.jer.paintballApp.activities;
 
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
@@ -13,6 +13,9 @@ import android.widget.DatePicker;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
+
+import com.jer.paintballApp.R;
+import com.jer.paintballApp.httpClasses.HttpParse;
 
 import java.util.HashMap;
 

@@ -1,4 +1,4 @@
-package com.jer.paintballApp;
+package com.jer.paintballApp.httpClasses;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;

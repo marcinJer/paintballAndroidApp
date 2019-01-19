@@ -1,4 +1,4 @@
-package com.jer.paintballApp;
+package com.jer.paintballApp.activities;
 
 import android.app.AlertDialog;
 import android.content.Intent;
@@ -13,6 +13,8 @@ import android.widget.TextView;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
+import com.jer.paintballApp.requests.LoginRequest;
+import com.jer.paintballApp.R;
 
 import org.json.JSONException;
 import org.json.JSONObject;

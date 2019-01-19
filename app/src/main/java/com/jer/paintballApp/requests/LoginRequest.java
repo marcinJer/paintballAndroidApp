@@ -1,4 +1,4 @@
-package com.jer.paintballApp;
+package com.jer.paintballApp.requests;
 
 import com.android.volley.Response;
 import com.android.volley.toolbox.StringRequest;
