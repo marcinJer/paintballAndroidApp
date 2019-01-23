@@ -1,9 +1,9 @@
 <?php
-if($_SERVER['REQUEST_METHOD']=='POST'){
+if($_SERVER['REQUEST_METHOD'] =='POST'){
 
     $con = mysqli_connect("localhost", "id8392575_jerry", "admin", "id8392575_paintball");
 
-    $userId = $_POST['userId'];
+    $userId = $_POST['id'];
     $price = $_POST['price'];
     $game = $_POST['game'];
     $weapon = $_POST['weapon'];
